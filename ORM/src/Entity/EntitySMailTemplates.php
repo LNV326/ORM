@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySMailTemplates
  *
  * @ORM\Table(name="s_mail_templates")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySMailTemplatesRep")
  */
 class EntitySMailTemplates
 {

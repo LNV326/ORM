@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumReputationBak
  *
  * @ORM\Table(name="forum_reputation_bak", indexes={@ORM\Index(name="member_id", columns={"member_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumReputationBakRep")
  */
 class EntityForumReputationBak
 {

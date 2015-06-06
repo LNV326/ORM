@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumMacro
  *
  * @ORM\Table(name="forum_macro", indexes={@ORM\Index(name="macro_set", columns={"macro_set"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumMacroRep")
  */
 class EntityForumMacro
 {

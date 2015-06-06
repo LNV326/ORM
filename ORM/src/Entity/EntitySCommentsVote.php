@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySCommentsVote
  *
  * @ORM\Table(name="s_comments_vote", indexes={@ORM\Index(name="comment_id", columns={"comment_id"}), @ORM\Index(name="user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySCommentsVoteRep")
  */
 class EntitySCommentsVote
 {

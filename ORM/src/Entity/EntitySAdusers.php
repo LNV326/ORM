@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySAdusers
  *
  * @ORM\Table(name="s_adusers")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySAdusersRep")
  */
 class EntitySAdusers
 {

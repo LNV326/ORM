@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySGalleryCat
  *
  * @ORM\Table(name="s_gallery_cat", indexes={@ORM\Index(name="id", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySGalleryCatRep")
  */
 class EntitySGalleryCat
 {

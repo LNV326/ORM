@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumCacheStore
  *
  * @ORM\Table(name="forum_cache_store")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumCacheStoreRep")
  */
 class EntityForumCacheStore
 {

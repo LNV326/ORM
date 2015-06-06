@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySConfig
  *
  * @ORM\Table(name="s_config")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySConfigRep")
  */
 class EntitySConfig
 {

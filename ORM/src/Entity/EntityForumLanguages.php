@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumLanguages
  *
  * @ORM\Table(name="forum_languages", indexes={@ORM\Index(name="ldir", columns={"ldir"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumLanguagesRep")
  */
 class EntityForumLanguages
 {

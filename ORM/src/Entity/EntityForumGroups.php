@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumGroups
  *
  * @ORM\Table(name="forum_groups")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumGroupsRep")
  */
 class EntityForumGroups
 {

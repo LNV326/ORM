@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumEmoticons
  *
  * @ORM\Table(name="forum_emoticons", indexes={@ORM\Index(name="clickable", columns={"clickable"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumEmoticonsRep")
  */
 class EntityForumEmoticons
 {

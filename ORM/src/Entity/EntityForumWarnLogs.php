@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumWarnLogs
  *
  * @ORM\Table(name="forum_warn_logs")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumWarnLogsRep")
  */
 class EntityForumWarnLogs
 {

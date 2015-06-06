@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityDirectoryElm
  *
  * @ORM\Table(name="directory_elm", uniqueConstraints={@ORM\UniqueConstraint(name="refid", columns={"refid"})}, indexes={@ORM\Index(name="dir_elm2dir_list", columns={"dir_elm2dir_list"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityDirectoryElmRep")
  */
 class EntityDirectoryElm
 {

@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumSearchResults
  *
  * @ORM\Table(name="forum_search_results")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumSearchResultsRep")
  */
 class EntityForumSearchResults
 {

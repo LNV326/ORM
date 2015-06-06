@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySFilesCat
  *
  * @ORM\Table(name="s_files_cat")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySFilesCatRep")
  */
 class EntitySFilesCat
 {

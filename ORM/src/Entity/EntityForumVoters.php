@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumVoters
  *
  * @ORM\Table(name="forum_voters", indexes={@ORM\Index(name="tid", columns={"tid", "member_id"}), @ORM\Index(name="ip_address", columns={"ip_address"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumVotersRep")
  */
 class EntityForumVoters
 {

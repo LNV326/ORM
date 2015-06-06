@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySComments
  *
  * @ORM\Table(name="s_comments", indexes={@ORM\Index(name="I_module", columns={"module", "deleted"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySCommentsRep")
  */
 class EntitySComments
 {

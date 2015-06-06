@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumNamesHistory
  *
  * @ORM\Table(name="forum_names_history", indexes={@ORM\Index(name="mid", columns={"mid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumNamesHistoryRep")
  */
 class EntityForumNamesHistory
 {

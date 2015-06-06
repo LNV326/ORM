@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumSkins
  *
  * @ORM\Table(name="forum_skins", indexes={@ORM\Index(name="tmpl_id", columns={"tmpl_id"}), @ORM\Index(name="css_id", columns={"css_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumSkinsRep")
  */
 class EntityForumSkins
 {

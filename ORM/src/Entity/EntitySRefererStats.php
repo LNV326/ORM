@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySRefererStats
  *
  * @ORM\Table(name="s_referer_stats", indexes={@ORM\Index(name="ip_agent_md5", columns={"ip_agent_md5"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySRefererStatsRep")
  */
 class EntitySRefererStats
 {

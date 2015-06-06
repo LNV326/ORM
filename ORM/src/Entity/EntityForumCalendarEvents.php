@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumCalendarEvents
  *
  * @ORM\Table(name="forum_calendar_events", indexes={@ORM\Index(name="unix_stamp", columns={"unix_stamp"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumCalendarEventsRep")
  */
 class EntityForumCalendarEvents
 {

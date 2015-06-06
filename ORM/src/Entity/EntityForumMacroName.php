@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntityForumMacroName
  *
  * @ORM\Table(name="forum_macro_name")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntityForumMacroNameRep")
  */
 class EntityForumMacroName
 {

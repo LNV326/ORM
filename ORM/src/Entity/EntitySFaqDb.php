@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySFaqDb
  *
  * @ORM\Table(name="s_faq_db", indexes={@ORM\Index(name="id", columns={"id", "cat_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySFaqDbRep")
  */
 class EntitySFaqDb
 {
