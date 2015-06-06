@@ -24,7 +24,7 @@
 	<!-- Deploy ORM project -->
 	<target name="deployORM">
 		
-		<sshexec trust="true" host="${env.ssh.host}"
+		<!--<sshexec trust="true" host="${env.ssh.host}"
 					username="${env.ssh.user}"
 					password="${env.ssh.pass}"
 					command="echo ${env.ssh.pass} | sudo -S rm -rf ${env.path}"
@@ -33,9 +33,11 @@
 					username="${env.ssh.user}"
 					password="${env.ssh.pass}"
 					command="echo ${env.ssh.pass} | mkdir ${env.path}"
-					failonerror="false"/>
+					failonerror="false"/> -->
 		<scp trust="true" todir="${env.ssh.user}:${env.ssh.pass}@${env.ssh.host}:${env.path}">
-			<fileset dir="./"/>
+			<fileset dir="./">
+				<exclude name="./vendor/*"/>
+			</fileset>
 		</scp>
 		<sshexec trust="true" host="${env.ssh.host}"
 					username="${env.ssh.user}"

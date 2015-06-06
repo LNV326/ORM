@@ -8,6 +8,16 @@ require_once '../vendor/autoload.php';
 require_once '../src/bootstrap.php';
 
 
+$repo = $em->getRepository( "Entity\\EntitySPages" );
+$page = $repo->findOneByName( addslashes('news') );
+if (is_null($page) ) {
+	echo 'module';
+} else {
+	echo 'page';
+}
+echo '<br>';
+
+
 if (!ClassLoader::classExists('EntityDirectoryElm'))
 	echo 'NotFound<br>';
 else

@@ -4,7 +4,8 @@
 			"LNV\\ORM\\" : "src"
 		},
 		"psr-0" : {
-			"Entity" : "src"
+			"Entity" : "src",
+			"Repository" : "src"
 		}
 	},
 	"name" : "LNV/ORM",
