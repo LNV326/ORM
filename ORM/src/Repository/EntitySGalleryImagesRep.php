@@ -16,8 +16,9 @@ class EntitySGalleryImagesRep extends \Doctrine\ORM\EntityRepository
 		->createQuery('SELECT count(en)
 				FROM Entity\EntitySGalleryImages en
 				WHERE en.allowAdd = 0')
-					->getResult(); 
+					->getSingleScalarResult();
 	}
+	
 	public function getRandomImage() {
 		// TODO Doctrine2 know nothing about RAND finction, so need to learn it
 		// http://cyberapp.ru/2014/08/27/symfony-2-doctrine-2-random-records-mysql-order-by-rand/

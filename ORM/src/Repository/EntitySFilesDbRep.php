@@ -10,4 +10,12 @@ namespace Repository;
  */
 class EntitySFilesDbRep extends \Doctrine\ORM\EntityRepository
 {
+	public function getCountForReview() {
+		return $this->getEntityManager()
+		->createQuery('SELECT count(en)
+				FROM Entity\EntitySFilesDb en
+				WHERE en.show = :show')
+					->setParameter('show', "N")
+					->getSingleScalarResult();
+	}
 }
