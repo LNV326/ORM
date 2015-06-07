@@ -89,6 +89,12 @@ class EntitySPages
      * @ORM\JoinColumn(name="root_page", referencedColumnName="name")
      **/
     private $rootPageVal;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="EntityForumMembers")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     **/
+    private $createdByVal;
 
 
     /**
@@ -326,4 +332,28 @@ class EntitySPages
 		return $this;
 	}
 	
+
+    /**
+     * Set createdByVal
+     *
+     * @param \Entity\EntityForumMembers $createdByVal
+     *
+     * @return EntitySPages
+     */
+    public function setCreatedByVal(\Entity\EntityForumMembers $createdByVal = null)
+    {
+        $this->createdByVal = $createdByVal;
+
+        return $this;
+    }
+
+    /**
+     * Get createdByVal
+     *
+     * @return \Entity\EntityForumMembers
+     */
+    public function getCreatedByVal()
+    {
+        return $this->createdByVal;
+    }
 }

@@ -7,7 +7,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Cache\ArrayCache;
 
 $paths = array( realpath(__DIR__."/../src/Entity") );
-$isDevMode = false;
+$isDevMode = true;
 
 // the connection configuration
 $dbParams = array(

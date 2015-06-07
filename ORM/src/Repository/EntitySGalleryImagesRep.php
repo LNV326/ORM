@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 /**
  * EntitySGalleryImagesRep
  *
@@ -10,4 +11,23 @@ namespace Repository;
  */
 class EntitySGalleryImagesRep extends \Doctrine\ORM\EntityRepository
 {
+	public function getCountForReview() {
+		return $this->getEntityManager()
+		->createQuery('SELECT count(en)
+				FROM Entity\EntitySGalleryImages en
+				WHERE en.allowAdd = 0')
+					->getResult(); 
+	}
+	public function getRandomImage() {
+		// TODO Doctrine2 know nothing about RAND finction, so need to learn it
+		// http://cyberapp.ru/2014/08/27/symfony-2-doctrine-2-random-records-mysql-order-by-rand/
+		// return $this->getEntityManager()
+		// ->createQuery('SELECT en
+		// FROM Entity\EntitySGalleryImages en
+		// WHERE en.allowAdd = 1 ORDER BY rand() LIMIT 1')
+		// ->getSingleResult();
+		$rsm = new ResultSetMappingBuilder( $this->getEntityManager() );
+		$rsm->addRootEntityFromClassMetadata( 'Entity\EntitySGalleryImages', 'en' );
+		return $this->getEntityManager()->createNativeQuery( 'SELECT en.* FROM s_gallery_images en WHERE en.allow_add = 1 order by RAND() LIMIT 1', $rsm )->getSingleResult();
+	}
 }

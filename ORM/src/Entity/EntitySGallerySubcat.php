@@ -126,7 +126,9 @@ class EntitySGallerySubcat
      */
     private $album2dirElm = '0';
 
-
+    public function _toArray() {
+    	return get_object_vars($this); // TODO Delete this function when transfer from Smarty to Twig template engine
+    }
 
     /**
      * Get id

@@ -55,8 +55,16 @@ class EntitySGalleryImages
      * @ORM\Column(name="allow_add", type="boolean", nullable=false)
      */
     private $allowAdd = '0';
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="EntitySGallerySubcat")
+     * @ORM\JoinColumn(name="subcat", referencedColumnName="id")
+     **/
+    private $subcatVal;
 
-
+	public function _toArray() {
+		return get_object_vars($this); // TODO Delete this function when transfer from Smarty to Twig template engine
+	}
 
     /**
      * Get id
@@ -186,5 +194,29 @@ class EntitySGalleryImages
     public function getAllowAdd()
     {
         return $this->allowAdd;
+    }
+
+    /**
+     * Set subcatVal
+     *
+     * @param \Entity\EntitySGallerySubcat $subcatVal
+     *
+     * @return EntitySGalleryImages
+     */
+    public function setSubcatVal(\Entity\EntitySGallerySubcat $subcatVal = null)
+    {
+        $this->subcatVal = $subcatVal;
+
+        return $this;
+    }
+
+    /**
+     * Get subcatVal
+     *
+     * @return \Entity\EntitySGallerySubcat
+     */
+    public function getSubcatVal()
+    {
+        return $this->subcatVal;
     }
 }
