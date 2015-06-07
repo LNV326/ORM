@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EntitySMenuItems
  *
  * @ORM\Table(name="s_menu_items", indexes={@ORM\Index(name="id", columns={"id"}), @ORM\Index(name="cat_id", columns={"cat_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\EntitySMenuItemsRep")
  */
 class EntitySMenuItems
 {
