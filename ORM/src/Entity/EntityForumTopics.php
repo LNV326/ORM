@@ -198,6 +198,13 @@ class EntityForumTopics
      */
 	private $postsVal;
 	
+	/**
+	 * @var unknown
+	 *
+	 * @ORM\OneToOne(targetEntity="EntityForumPolls", mappedBy="topicVal")
+	 */
+	private $pollVal = null;
+	
 	public function __construct() {
 		$this->postsVal = new ArrayCollection();
 	}
@@ -820,5 +827,29 @@ class EntityForumTopics
     public function getPostsVal()
     {
         return $this->postsVal;
+    }
+
+    /**
+     * Set pollVal
+     *
+     * @param \Entity\EntityForumPolls $pollVal
+     *
+     * @return EntityForumTopics
+     */
+    public function setPollVal(\Entity\EntityForumPolls $pollVal = null)
+    {
+        $this->pollVal = $pollVal;
+
+        return $this;
+    }
+
+    /**
+     * Get pollVal
+     *
+     * @return \Entity\EntityForumPolls
+     */
+    public function getPollVal()
+    {
+        return $this->pollVal;
     }
 }

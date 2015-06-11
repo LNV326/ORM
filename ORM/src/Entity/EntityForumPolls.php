@@ -98,7 +98,13 @@ class EntityForumPolls
      */
     private $weightedPollPlaces = '0';
 
-
+    /**
+     * @var unknown
+     * 
+     * @ORM\OneToOne(targetEntity="EntityForumTopics", inversedBy="pollVal")
+     * @ORM\JoinColumn(name="tid", referencedColumnName="tid")
+     */
+	private $topicVal = null;
 
     /**
      * Get tid
@@ -372,5 +378,29 @@ class EntityForumPolls
     public function getWeightedPollPlaces()
     {
         return $this->weightedPollPlaces;
+    }
+
+    /**
+     * Set topicVal
+     *
+     * @param \Entity\EntityForumTopics $topicVal
+     *
+     * @return EntityForumPolls
+     */
+    public function setTopicVal(\Entity\EntityForumTopics $topicVal = null)
+    {
+        $this->topicVal = $topicVal;
+
+        return $this;
+    }
+
+    /**
+     * Get topicVal
+     *
+     * @return \Entity\EntityForumTopics
+     */
+    public function getTopicVal()
+    {
+        return $this->topicVal;
     }
 }

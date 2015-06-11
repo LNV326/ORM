@@ -20,6 +20,15 @@ class EntitySFilesDbRep extends \Doctrine\ORM\EntityRepository
 					->getSingleScalarResult();
 	}
 	
+	public function getCountForShow() {
+		return $this->getEntityManager()
+		->createQuery('SELECT count(en)
+				FROM Entity\EntitySFilesDb en
+				WHERE en.show = :show')
+					->setParameter('show', "Y")
+					->getSingleScalarResult();
+	}
+	
 	public function getLastAddedFiles($countRows) {
 		return $this->getEntityManager()
 			->createQuery('SELECT en FROM Entity\EntitySFilesDb en
@@ -28,5 +37,15 @@ class EntitySFilesDbRep extends \Doctrine\ORM\EntityRepository
 			->setParameter('show', 'Y')
 			->setMaxResults($countRows)
 			->getResult();
+	}
+	
+	public function getMostPopularFiles($countRows) {
+		return $this->getEntityManager()
+		->createQuery('SELECT en FROM Entity\EntitySFilesDb en
+					WHERE en.show = :show
+					ORDER BY en.count DESC')
+						->setParameter('show', 'Y')
+						->setMaxResults($countRows)
+						->getResult();
 	}
 }

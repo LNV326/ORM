@@ -12,12 +12,18 @@ use Entity\EntitySPages;
  */
 class EntitySPagesRep extends \Doctrine\ORM\EntityRepository
 {
-	function getOneByName($name) {
+	public function getOneByName($name) {
 		return $this->getEntityManager()
 		->createQuery('SELECT en
 				FROM Entity\EntitySPages en
 				WHERE en.name = :name')
 						->setParameter('name', $name)
 						->getOneOrNullResult();
+	}
+	
+	public function getPagesByPopularity() {
+		return $this->getEntityManager()
+			->createQuery('SELECT en FROM Entity\EntitySPages en ORDER BY en.counts DESC')
+			->getResult();
 	}
 }

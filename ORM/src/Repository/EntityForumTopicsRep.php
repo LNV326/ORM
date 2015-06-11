@@ -33,4 +33,13 @@ class EntityForumTopicsRep extends \Doctrine\ORM\EntityRepository
 			->setMaxResults($countRows)
 			->getResult();
 	}
+	
+	public function getTopicWithLastActivePoll() {
+		return $this->getEntityManager()
+			->createQuery('SELECT t FROM Entity\EntityForumTopics t
+					JOIN t.pollVal p
+					ORDER BY p.startDate DESC')
+			->setMaxResults(1)
+			->getSingleResult();
+	}
 }

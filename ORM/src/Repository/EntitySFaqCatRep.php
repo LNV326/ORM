@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Entity\EntitySFaqCat;
 /**
  * EntitySFaqCatRep
  *
@@ -10,4 +11,9 @@ namespace Repository;
  */
 class EntitySFaqCatRep extends \Doctrine\ORM\EntityRepository
 {
+	public function getCategoriesByPopularity() {
+		return $this->getEntityManager()
+			->createQuery('SELECT en FROM Entity\EntitySFaqCat en ORDER BY en.count DESC')
+			->getResult();
+	}
 }
