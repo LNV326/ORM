@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * EntitySMenuCat
@@ -35,7 +36,14 @@ class EntitySMenuCat
      */
     private $name = '';
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="EntitySMenuItems", mappedBy="categoryVal")
+     */
+	private $itemsVal;
+	
+	public function __construct() {
+		$this->itemsVal = new ArrayCollection();
+	}
 
     /**
      * Get id
@@ -93,5 +101,39 @@ class EntitySMenuCat
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add itemsVal
+     *
+     * @param \Entity\EntitySMenuItems $itemsVal
+     *
+     * @return EntitySMenuCat
+     */
+    public function addItemsVal(\Entity\EntitySMenuItems $itemsVal)
+    {
+        $this->itemsVal[] = $itemsVal;
+
+        return $this;
+    }
+
+    /**
+     * Remove itemsVal
+     *
+     * @param \Entity\EntitySMenuItems $itemsVal
+     */
+    public function removeItemsVal(\Entity\EntitySMenuItems $itemsVal)
+    {
+        $this->itemsVal->removeElement($itemsVal);
+    }
+
+    /**
+     * Get itemsVal
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getItemsVal()
+    {
+        return $this->itemsVal;
     }
 }

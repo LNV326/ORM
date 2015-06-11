@@ -70,6 +70,11 @@ class EntitySMenuItems
      */
     private $openNew = '0';
 
+    /**
+     * @ORM\ManyToOne(targetEntity="EntitySMenuCat", inversedBy="itemsVal")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     **/
+    private $categoryVal = null;
 
 
     /**
@@ -248,5 +253,29 @@ class EntitySMenuItems
     public function getOpenNew()
     {
         return $this->openNew;
+    }
+
+    /**
+     * Set categoryVal
+     *
+     * @param \Entity\EntitySMenuCat $categoryVal
+     *
+     * @return EntitySMenuItems
+     */
+    public function setCategoryVal(\Entity\EntitySMenuCat $categoryVal = null)
+    {
+        $this->categoryVal = $categoryVal;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryVal
+     *
+     * @return \Entity\EntitySMenuCat
+     */
+    public function getCategoryVal()
+    {
+        return $this->categoryVal;
     }
 }
