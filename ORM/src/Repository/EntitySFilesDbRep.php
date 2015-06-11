@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Entity\EntitySFilesDb;
 /**
  * EntitySFilesDbRep
  *
@@ -12,10 +13,20 @@ class EntitySFilesDbRep extends \Doctrine\ORM\EntityRepository
 {
 	public function getCountForReview() {
 		return $this->getEntityManager()
-		->createQuery('SELECT count(en)
+			->createQuery('SELECT count(en)
 				FROM Entity\EntitySFilesDb en
 				WHERE en.show = :show')
 					->setParameter('show', "N")
 					->getSingleScalarResult();
+	}
+	
+	public function getLastAddedFiles($countRows) {
+		return $this->getEntityManager()
+			->createQuery('SELECT en FROM Entity\EntitySFilesDb en
+					WHERE en.show = :show
+					ORDER BY en.id DESC')
+			->setParameter('show', 'Y')
+			->setMaxResults($countRows)
+			->getResult();
 	}
 }

@@ -167,6 +167,14 @@ class EntityForumPosts
      * @ORM\Column(name="MarkDeleted", type="boolean", nullable=true)
      */
     private $markdeleted;
+    
+    /**
+     * @var unknown
+     * 
+     * @ORM\ManyToOne(targetEntity="EntityForumTopics", inversedBy="postsVal")
+     * @ORM\JoinColumn(name="topic_id", referencedColumnName="tid")
+     */
+    private $topicVal = null;
 
 
 
@@ -682,5 +690,29 @@ class EntityForumPosts
     public function getMarkdeleted()
     {
         return $this->markdeleted;
+    }
+
+    /**
+     * Set topicVal
+     *
+     * @param \Entity\EntityForumTopics $topicVal
+     *
+     * @return EntityForumPosts
+     */
+    public function setTopicVal(\Entity\EntityForumTopics $topicVal = null)
+    {
+        $this->topicVal = $topicVal;
+
+        return $this;
+    }
+
+    /**
+     * Get topicVal
+     *
+     * @return \Entity\EntityForumTopics
+     */
+    public function getTopicVal()
+    {
+        return $this->topicVal;
     }
 }

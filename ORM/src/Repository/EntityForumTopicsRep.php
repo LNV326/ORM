@@ -2,6 +2,8 @@
 
 namespace Repository;
 
+use Entity\EntityForumTopics;
+use Entity\EntityForumPosts;
 /**
  * EntityForumTopicsRep
  *
@@ -10,4 +12,25 @@ namespace Repository;
  */
 class EntityForumTopicsRep extends \Doctrine\ORM\EntityRepository
 {
+	public function getTopicsForNews($newsForumId, $offset, $countRows) {
+		return $this->getEntityManager()
+			->createQuery('SELECT t,p FROM Entity\EntityForumTopics t 
+					LEFT JOIN t.postsVal p WITH p.newTopic=1
+					WHERE t.forumId IN (:news_forum_id)
+					ORDER BY t.tid DESC')
+			->setParameter('news_forum_id', $newsForumId)
+			->setFirstResult($offset)
+			->setMaxResults($countRows)
+			->getResult();
+	}
+	
+	public function getLastActiveTopics($hiddenForumIds, $countRows) {
+		return $this->getEntityManager()
+			->createQuery('SELECT t FROM Entity\EntityForumTopics t
+					WHERE t.forumId NOT IN (:hiddenForumIds)
+					ORDER BY t.lastPost DESC')
+			->setParameter('hiddenForumIds', $hiddenForumIds)
+			->setMaxResults($countRows)
+			->getResult();
+	}
 }

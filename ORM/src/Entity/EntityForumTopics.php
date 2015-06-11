@@ -3,6 +3,8 @@
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * EntityForumTopics
@@ -189,7 +191,16 @@ class EntityForumTopics
      */
     private $whyClose;
 
-
+    /**
+     * @var unknown
+     * 
+     * @ORM\OneToMany(targetEntity="EntityForumPosts", mappedBy="topicVal")
+     */
+	private $postsVal;
+	
+	public function __construct() {
+		$this->postsVal = new ArrayCollection();
+	}
 
     /**
      * Get tid
@@ -775,5 +786,39 @@ class EntityForumTopics
     public function getWhyClose()
     {
         return $this->whyClose;
+    }
+
+    /**
+     * Add postsVal
+     *
+     * @param \Entity\EntityForumPosts $postsVal
+     *
+     * @return EntityForumTopics
+     */
+    public function addPostsVal(\Entity\EntityForumPosts $postsVal)
+    {
+        $this->postsVal[] = $postsVal;
+
+        return $this;
+    }
+
+    /**
+     * Remove postsVal
+     *
+     * @param \Entity\EntityForumPosts $postsVal
+     */
+    public function removePostsVal(\Entity\EntityForumPosts $postsVal)
+    {
+        $this->postsVal->removeElement($postsVal);
+    }
+
+    /**
+     * Get postsVal
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostsVal()
+    {
+        return $this->postsVal;
     }
 }
