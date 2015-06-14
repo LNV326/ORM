@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * EntitySFaqDb
@@ -48,9 +49,15 @@ class EntitySFaqDb
      * @ORM\Column(name="answer", type="text", length=65535, nullable=false)
      */
     private $answer;
-
-
-
+    
+    /**
+     * @var unknown
+     * 
+     * @ORM\ManyToOne(targetEntity="EntitySFaqCat", inversedBy="itemsVal")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     */
+    private $categoryVal = null;
+    
     /**
      * Get objid
      *
@@ -155,5 +162,29 @@ class EntitySFaqDb
     public function getAnswer()
     {
         return $this->answer;
+    }
+
+    /**
+     * Set categoryVal
+     *
+     * @param \Entity\EntitySFaqDb $categoryVal
+     *
+     * @return EntitySFaqDb
+     */
+    public function setCategoryVal(\Entity\EntitySFaqDb $categoryVal = null)
+    {
+        $this->categoryVal = $categoryVal;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryVal
+     *
+     * @return \Entity\EntitySFaqDb
+     */
+    public function getCategoryVal()
+    {
+        return $this->categoryVal;
     }
 }

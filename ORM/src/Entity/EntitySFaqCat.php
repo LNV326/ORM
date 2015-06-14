@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * EntitySFaqCat
@@ -48,6 +49,19 @@ class EntitySFaqCat
      * @ORM\Column(name="info", type="text", length=65535, nullable=false)
      */
     private $info;
+    
+    /**
+     * @var unknown
+     *
+     * @ORM\OneToMany(targetEntity="EntitySFaqDb", mappedBy="categoryVal")
+     */
+    private $itemsVal;
+    
+    
+    public function __construct() {
+    	$this->itemsVal = new ArrayCollection();
+    }
+    
 
 
 
@@ -155,5 +169,39 @@ class EntitySFaqCat
     public function getInfo()
     {
         return $this->info;
+    }
+
+    /**
+     * Add itemsVal
+     *
+     * @param \Entity\EntitySFaqDb $itemsVal
+     *
+     * @return EntitySFaqCat
+     */
+    public function addItemsVal(\Entity\EntitySFaqDb $itemsVal)
+    {
+        $this->itemsVal[] = $itemsVal;
+
+        return $this;
+    }
+
+    /**
+     * Remove itemsVal
+     *
+     * @param \Entity\EntitySFaqDb $itemsVal
+     */
+    public function removeItemsVal(\Entity\EntitySFaqDb $itemsVal)
+    {
+        $this->itemsVal->removeElement($itemsVal);
+    }
+
+    /**
+     * Get itemsVal
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getItemsVal()
+    {
+        return $this->itemsVal;
     }
 }
