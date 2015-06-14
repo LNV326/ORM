@@ -2,6 +2,7 @@
 
 namespace Repository;
 
+use Entity\EntityForumMembers;
 /**
  * EntityForumMembersRep
  *
@@ -10,4 +11,10 @@ namespace Repository;
  */
 class EntityForumMembersRep extends \Doctrine\ORM\EntityRepository
 {
+	public function getMostPosterMember() {
+		return $this->getEntityManager()
+			->createQuery('SELECT m FROM Entity\EntityForumMembers m ORDER BY m.posts DESC')
+			->setMaxResults(1)
+			->getSingleResult();;
+	}
 }

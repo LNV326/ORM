@@ -42,4 +42,25 @@ class EntityForumTopicsRep extends \Doctrine\ORM\EntityRepository
 			->setMaxResults(1)
 			->getSingleResult();
 	}
+	
+	public function getMostViewedTopic() {
+		return $this->getEntityManager()
+			->createQuery('SELECT t FROM Entity\EntityForumTopics t ORDER BY t.views DESC')
+			->setMaxResults(1)
+			->getSingleResult();
+	}
+	
+	public function getMostPostedTopic() {
+		return $this->getEntityManager()
+		->createQuery('SELECT t FROM Entity\EntityForumTopics t ORDER BY t.posts DESC')
+		->setMaxResults(1)
+		->getSingleResult();
+	}
+	
+	public function getLastActiveTopic() {
+		return $this->getEntityManager()
+		->createQuery('SELECT t FROM Entity\EntityForumTopics t ORDER BY t.lastPost DESC')
+		->setMaxResults(1)
+		->getSingleResult();
+	}
 }
