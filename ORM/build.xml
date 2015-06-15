@@ -1,19 +1,68 @@
 <?xml version="1.0"?>
 <project name="Doctrine Manager">
-	<target name="DefaultTarger">
-		<echo>Echo from DefaultTarger</echo>
-		<sshexec trust="true" host="${env.ssh.host}"
-					username="${env.ssh.user}"
-					password="${env.ssh.pass}"
-					command="ls | cd ${env.path} | ls"
-					failonerror="false"/>
-	</target>
 	
 	<property file="dev_env.properties"/>
 	
+	<!-- Using Paths -->
+	<property name="path.src" value="${env.path}/src"/>
+	<property name="path.tmp" value="${env.path}/tmp"/>
+	<property name="path.entity" value="${env.path}/src/Entity"/>
+	<property name="path.repositoty" value="${env.path}/src/Repository"/>
+	<property name="path.proxy" value="${env.path}/tmp/Proxy"/>
+
+	
+	<target name="Test Connection">
+		<echo>Trying to connect to ${env.name}</echo>
+		<sshexec trust="true" host="${env.ssh.host}" port="${env.ssh.port}"
+					username="${env.ssh.user}"
+					password="${env.ssh.pass}"					
+					command="ls"
+					failonerror="true"/>
+	</target>
+	
+	<target name="Clear Paths" description="Delete paths with Entities, Repositories and Proxies">
+		<sshexec trust="true" host="${env.ssh.host}" port="${env.ssh.port}"
+					username="${env.ssh.user}"
+					password="${env.ssh.pass}"					
+					command="rm -r ${path.entity} | rm -r ${path.repositoty} | rm -r ${path.proxy}"
+					failonerror="false"/>
+		<sshexec trust="true" host="${env.ssh.host}" port="${env.ssh.port}"
+					username="${env.ssh.user}"
+					password="${env.ssh.pass}"					
+					command="mkdir ${path.src} | mkdir ${path.tmp}"
+					failonerror="false"/>
+		<sshexec trust="true" host="${env.ssh.host}" port="${env.ssh.port}"
+					username="${env.ssh.user}"
+					password="${env.ssh.pass}"					
+					command="mkdir ${path.entity} | mkdir ${path.repositoty} | mkdir ${path.proxy}"
+					failonerror="true"/>
+	</target>
+	
+	<!-- ================================= 
+          target: Create Entities Local              
+         ================================= -->
+    <target name="Create Entities Local" description="description">
+        <exec executable="${basedir}/vendor/bin/doctrine">
+        	<arg line="orm:generate:entities /src"/>
+        </exec>
+    </target>
+
+	
+	<!-- ================================= 
+          target: Create Proxies Local              
+         ================================= -->
+    <target name="Create Proxies Local" description="description">
+        <exec executable="${basedir}/vendor/bin/doctrine">
+        	<arg line="orm:generate:proxies"/>
+        </exec>
+    </target>
+
+	
+		
+	
 	<target name="composer-update-local">
-		<exec executable="sudo" inputstring="sa@123">
-			<arg line="php composer.phar update"/>
+		<exec executable="php">
+			<arg line="composer.phar update"/>
 		</exec>
 		<!--
 		sudo vendor/bin/doctrine orm:convert-mapping annotation src/Entity -namespace Entity -from-database
@@ -21,29 +70,38 @@
 		-->
 	</target>
 	
-	<!-- Deploy ORM project -->
-	<target name="deployORM">
-		
-		<!--<sshexec trust="true" host="${env.ssh.host}"
-					username="${env.ssh.user}"
-					password="${env.ssh.pass}"
-					command="echo ${env.ssh.pass} | sudo -S rm -rf ${env.path}"
-					failonerror="false"/>
-		<sshexec trust="true" host="${env.ssh.host}"
-					username="${env.ssh.user}"
-					password="${env.ssh.pass}"
-					command="echo ${env.ssh.pass} | mkdir ${env.path}"
-					failonerror="false"/> -->
-		<scp trust="true" todir="${env.ssh.user}:${env.ssh.pass}@${env.ssh.host}:${env.path}">
+	<!-- ================================= 
+          target: deployORMFull              
+         ================================= -->
+	<target name="deployORMFull" depends="Create Proxies Local, Clear Paths">
+		<scp trust="true" todir="${env.ssh.user}:${env.ssh.pass}@${env.ssh.host}:${env.path}" port="${env.ssh.port}">
 			<fileset dir="./">
-				<exclude name="./vendor/*"/>
+				<!-- <exclude name="vendor/"/> -->
+				<exclude name="composer*"/>
+				<exclude name="*.properties"/>
+				<exclude name="*.xml"/>
 			</fileset>
 		</scp>
-		<sshexec trust="true" host="${env.ssh.host}"
+		<!-- <sshexec trust="true" host="${env.ssh.host}" port="${env.ssh.port}"
 					username="${env.ssh.user}"
 					password="${env.ssh.pass}"
-					command="echo ${env.ssh.pass} | sudo -S chmod 0777 -R ${env.path}"
-					failonerror="false"/>
+					command="sudo -S chmod 0777 -R ${env.path}"
+					failonerror="false"/>-->
 					
+	</target>
+	
+	<!-- ================================= 
+          target: deployORM4Dev             
+         ================================= -->
+	<target name="deployORM4Lite" depends="Create Proxies Local, Clear Paths">
+		<scp trust="true" todir="${env.ssh.user}:${env.ssh.pass}@${env.ssh.host}:${env.path}" port="${env.ssh.port}">
+			<fileset dir="./">
+				<exclude name="vendor/"/>
+				<exclude name="composer*"/>
+				<exclude name="*.properties"/>
+				<exclude name="*.xml"/>
+				<exclude name="src/bootstrap.php"/>
+			</fileset>
+		</scp>					
 	</target>
 </project>

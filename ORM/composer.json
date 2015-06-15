@@ -10,7 +10,13 @@
 	},
 	"name" : "LNV/ORM",
 	"require" : {
-		"doctrine/orm" : "2.5.0@stable"
+		"doctrine/orm" : "<=2.4.7"
 	},
-	"minimum-stability" : "dev"
+	"minimum-stability" : "dev",
+	"description" : "Project for test",
+	"authors" : [{
+			"name" : "Nikolay Lukyanov",
+			"email" : "lnv326@gmail.com"
+		}
+	]
 }
