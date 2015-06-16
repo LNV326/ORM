@@ -125,6 +125,14 @@ class EntitySFilesDb
      * @ORM\Column(name="show", type="string", nullable=false)
      */
     private $show = 'N';
+    
+    /**
+     * @var unknown
+     * 
+     * @ORM\ManyToOne(targetEntity="EntitySFilesSubcat", inversedBy="filesVal")
+     * @ORM\JoinColumn(name="subcat_id", referencedColumnName="id")
+     */
+    private $subcatVal = null;
 
 
 
@@ -496,5 +504,28 @@ class EntitySFilesDb
     public function getShow()
     {
         return $this->show;
+    }
+
+    /**
+     * Set subcatVal
+     *
+     * @param \Entity\EntitySFilesSubcat $subcatVal
+     * @return EntitySFilesDb
+     */
+    public function setSubcatVal(\Entity\EntitySFilesSubcat $subcatVal = null)
+    {
+        $this->subcatVal = $subcatVal;
+
+        return $this;
+    }
+
+    /**
+     * Get subcatVal
+     *
+     * @return \Entity\EntitySFilesSubcat 
+     */
+    public function getSubcatVal()
+    {
+        return $this->subcatVal;
     }
 }

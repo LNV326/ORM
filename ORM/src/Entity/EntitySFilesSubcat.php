@@ -3,6 +3,7 @@
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * EntitySFilesSubcat
@@ -69,8 +70,25 @@ class EntitySFilesSubcat
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type = '0';
+    
+    /**
+     * @var unknown
+     *
+     * @ORM\ManyToOne(targetEntity="EntitySFilesCat", inversedBy="subcatVal")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     */
+    private $categoryVal = null;
+    
+    /**
+     * @var unknown
+     * 
+     * @ORM\OneToMany(targetEntity="EntitySFilesDb", mappedBy="subcatVal")
+     */
+    private $filesVal;
 
-
+	public function __construct() {
+		$this->filesVal = new ArrayCollection();
+	}
 
     /**
      * Get id
@@ -248,5 +266,61 @@ class EntitySFilesSubcat
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set categoryVal
+     *
+     * @param \Entity\EntitySFilesCat $categoryVal
+     * @return EntitySFilesSubcat
+     */
+    public function setCategoryVal(\Entity\EntitySFilesCat $categoryVal = null)
+    {
+        $this->categoryVal = $categoryVal;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryVal
+     *
+     * @return \Entity\EntitySFilesCat 
+     */
+    public function getCategoryVal()
+    {
+        return $this->categoryVal;
+    }
+
+    /**
+     * Add filesVal
+     *
+     * @param \Entity\EntitySFilesDb $filesVal
+     * @return EntitySFilesSubcat
+     */
+    public function addFilesVal(\Entity\EntitySFilesDb $filesVal)
+    {
+        $this->filesVal[] = $filesVal;
+
+        return $this;
+    }
+
+    /**
+     * Remove filesVal
+     *
+     * @param \Entity\EntitySFilesDb $filesVal
+     */
+    public function removeFilesVal(\Entity\EntitySFilesDb $filesVal)
+    {
+        $this->filesVal->removeElement($filesVal);
+    }
+
+    /**
+     * Get filesVal
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFilesVal()
+    {
+        return $this->filesVal;
     }
 }

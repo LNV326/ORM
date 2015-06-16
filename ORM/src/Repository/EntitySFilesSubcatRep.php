@@ -10,4 +10,5 @@ namespace Repository;
  */
 class EntitySFilesSubcatRep extends AbstractEntityRep
 {
+	protected $_positionFieldName = 'poz';
 }

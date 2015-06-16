@@ -49,6 +49,12 @@ class EntitySFilesCat
      */
     private $defaultPath = '';
 
+    /**
+     * @var unknown
+     *
+     * @ORM\OneToMany(targetEntity="EntitySFilesSubcat", mappedBy="categoryVal")
+     */
+    private $subcatsVal;
 
 
     /**
@@ -155,5 +161,45 @@ class EntitySFilesCat
     public function getDefaultPath()
     {
         return $this->defaultPath;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->subcatsVal = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add subcatsVal
+     *
+     * @param \Entity\EntitySFilesSubcat $subcatsVal
+     * @return EntitySFilesCat
+     */
+    public function addSubcatsVal(\Entity\EntitySFilesSubcat $subcatsVal)
+    {
+        $this->subcatsVal[] = $subcatsVal;
+
+        return $this;
+    }
+
+    /**
+     * Remove subcatsVal
+     *
+     * @param \Entity\EntitySFilesSubcat $subcatsVal
+     */
+    public function removeSubcatsVal(\Entity\EntitySFilesSubcat $subcatsVal)
+    {
+        $this->subcatsVal->removeElement($subcatsVal);
+    }
+
+    /**
+     * Get subcatsVal
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSubcatsVal()
+    {
+        return $this->subcatsVal;
     }
 }

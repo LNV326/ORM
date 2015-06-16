@@ -2,8 +2,6 @@
 
 namespace Repository;
 
-use Entity\EntitySFilesCat;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 /**
  * EntitySFilesCatRep
  *
@@ -12,4 +10,5 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class EntitySFilesCatRep extends AbstractEntityRep
 {
+	protected $_positionFieldName = 'poz';
 }

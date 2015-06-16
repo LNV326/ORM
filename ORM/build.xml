@@ -43,7 +43,7 @@
          ================================= -->
     <target name="Create Entities Local" description="description">
         <exec executable="${basedir}/vendor/bin/doctrine">
-        	<arg line="orm:generate:entities /src"/>
+        	<arg line="orm:generate:entities src/"/>
         </exec>
     </target>
 
