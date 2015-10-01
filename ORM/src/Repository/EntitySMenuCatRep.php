@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\EntitySMenuCat;
+use Entity\EntitySMenuItems;
 /**
  * EntitySMenuCatRep
  *
@@ -13,7 +14,13 @@ class EntitySMenuCatRep extends \Doctrine\ORM\EntityRepository
 {
 	public function getAllCategories() {
 		return $this->getEntityManager()
-			->createQuery('SELECT en FROM Entity\EntitySMenuCat en ORDER BY en.poz')
+			->createQuery('SELECT c FROM Entity\EntitySMenuCat c ORDER BY c.poz')
+			->getResult();
+	}
+	
+	public function getAllCategoriesWithItems() {
+		return $this->getEntityManager()
+			->createQuery('SELECT c, i FROM Entity\EntitySMenuCat c LEFT JOIN c.itemsVal i ORDER BY c.poz')
 			->getResult();
 	}
 }

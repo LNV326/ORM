@@ -101,7 +101,7 @@ class EntityForumPolls
     /**
      * @var unknown
      * 
-     * @ORM\OneToOne(targetEntity="EntityForumTopics", inversedBy="pollVal")
+     * @ORM\ManyToOne(targetEntity="EntityForumTopics", inversedBy="pollVal")
      * @ORM\JoinColumn(name="tid", referencedColumnName="tid")
      */
 	private $topicVal = null;

@@ -201,7 +201,7 @@ class EntityForumTopics
 	/**
 	 * @var unknown
 	 *
-	 * @ORM\OneToOne(targetEntity="EntityForumPolls", mappedBy="topicVal")
+	 * @ORM\OneToMany(targetEntity="EntityForumPolls", mappedBy="topicVal")
 	 */
 	private $pollVal = null;
 	
