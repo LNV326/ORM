@@ -10,7 +10,8 @@
 	},
 	"name" : "LNV/ORM",
 	"require" : {
-		"doctrine/orm" : "<=2.4.7"
+		"php" : ">=7.2.0",
+		"doctrine/orm" : "=2.6.3"
 	},
 	"minimum-stability" : "dev",
 	"description" : "Project for test",
