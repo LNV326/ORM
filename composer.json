@@ -8,13 +8,13 @@
 			"Repository" : "src"
 		}
 	},
-	"name" : "LNV/ORM",
+	"name" : "LNV326/ORM",
 	"require" : {
 		"php" : ">=7.2.0",
 		"doctrine/orm" : "=2.6.3"
 	},
 	"minimum-stability" : "dev",
-	"description" : "Project for test",
+	"description" : "Project for test Doctrine ORM for IPB1.3",
 	"authors" : [{
 			"name" : "Nikolay Lukyanov",
 			"email" : "lnv326@gmail.com"
